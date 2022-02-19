@@ -26,7 +26,14 @@ int main()
     s.sh = sh;
     s.sw = sw;
 
-    Axis axis(s, x, y);
+    Font numbers = LoadFont("src/roboto/Roboto-Bold.ttf");
+
+
+    Axis axis(s, x, y, 14, 2, numbers);
+
+    Vector2 pos;
+    pos.x = 100;
+    pos.y = 100;
 
     while(!WindowShouldClose())
     {
@@ -35,14 +42,14 @@ int main()
         }
         BeginDrawing();
             ClearBackground(BLACK);
-            DrawFPS(10, 10);
             { // DRAW HERE
                 axis.draw();
             }
+            //DrawFPS(10, 10);
         EndDrawing();
     }
 
 
-
+    UnloadFont(numbers); // Get font out of VRAM
     return 0;
 }
