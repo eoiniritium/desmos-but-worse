@@ -28,10 +28,10 @@ int main()
     SetTargetFPS(fps);
 
     axis x, y;
-    x.highest = 360;
-    x.lowest = -90;
-    y.highest = 2;
-    y.lowest = -6;
+    x.highest = 100;
+    x.lowest = -100;
+    y.highest = 10;
+    y.lowest = -10;
     screen s;
     s.sh = sh;
     s.sw = sw;

@@ -15,6 +15,12 @@ typedef struct axis
     double lowest, highest;
 } axis;
 
+/*typedef struct 
+{
+    /* data
+};*/
+
+
 class Axis
 {   private:
     screen dimensions;
@@ -26,6 +32,8 @@ class Axis
     double pointperpixel_y;
     float fontsize, fontspacing;
     Font font;
+    double xaxisypos;
+    double yaxisxpos;
 
     public:
     Axis(screen dimensions, axis x, axis y, float fontsize, float fontspacing, Font font, int margin_top = 50, int number_label_points_x = 10, int number_label_points_y = 8)
@@ -41,6 +49,25 @@ class Axis
         this->number_label_points_x = number_label_points_x;
         this->number_label_points_y = number_label_points_y;
         this->font = font;
+
+
+        if(y.lowest >=0)
+        {
+            xaxisypos = dimensions.sh - margin;
+        }
+        else
+        {
+           xaxisypos = ((this->y.highest) * pointperpixel_y) + margin_top;
+        }
+        
+        if(this->x.lowest >= 0)
+        {
+            yaxisxpos = margin;
+        }
+        else
+        {
+            yaxisxpos = ((-this->x.lowest) * pointperpixel_x) + margin;
+        }
     }
 
     void draw()
@@ -54,25 +81,6 @@ class Axis
 
         DrawRectangleLinesEx(rec, 2, GRAY);
 
-
-        double xaxisypos;
-        if(y.lowest >=0)
-        {
-            xaxisypos = dimensions.sh - margin;
-        }
-        else
-        {
-           xaxisypos = ((this->y.highest) * pointperpixel_y) + margin_top;
-        }
-        double yaxisxpos;
-        if(this->x.lowest >= 0)
-        {
-            yaxisxpos = margin;
-        }
-        else
-        {
-            yaxisxpos = ((-this->x.lowest) * pointperpixel_x) + margin;
-        }
 
         // X axis
         DrawLine(margin, xaxisypos, dimensions.sw - margin, xaxisypos, WHITE);
