@@ -1,6 +1,7 @@
 #include <iostream>
 #include "raylib.h"
 #include "axis.hpp"
+#include "font.hpp"
 
 int main()
 {
@@ -35,10 +36,10 @@ int main()
     s.sh = sh;
     s.sw = sw;
 
-    Font numbers = LoadFont("src/roboto/Roboto-Bold.ttf");
+    Font_s font("src/roboto/Roboto-Bold.ttf");
 
 
-    Axis axis(s, x, y, 14, 2, numbers);
+    Axis axis(s, x, y, 14, 2, font.getfont());
 
     Vector2 pos;
     pos.x = 100;
@@ -58,7 +59,5 @@ int main()
         EndDrawing();
     }
 
-
-    UnloadFont(numbers); // Get font out of VRAM
     return 0;
 }
