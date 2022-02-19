@@ -1,17 +1,27 @@
 #include <iostream>
 #include "raylib.h"
 #include "axis.hpp"
+#include "font.hpp"
 
 int main()
 {
     int sw = 1280;
     int sh = 720;    
     int fps;
+    int showfps = 0;
 
 
     printf("Target FPS: ");
     scanf("%d", &fps);
-    printf("\nScreen dimensions: ");
+
+    // All of this to allocate and deallocate single byte!
+    printf("Show FPS? (Y/N) ");
+    char *temp = (char*)malloc(sizeof(char));
+    scanf("\n%c", temp);
+    showfps = (*temp == 'Y' || *temp == 'y') ? 1 : 0;
+    free(temp); // Remove var
+
+    printf("Screen dimensions: ");
     scanf("%dx%d", &sw, &sh);
 
     InitWindow(sw, sh, "Graphing");
@@ -26,7 +36,14 @@ int main()
     s.sh = sh;
     s.sw = sw;
 
-    Axis axis(s, x, y);
+    Font_s font("src/roboto/Roboto-Bold.ttf");
+
+
+    Axis axis(s, x, y, 14, 2, font.getfont());
+
+    Vector2 pos;
+    pos.x = 100;
+    pos.y = 100;
 
     while(!WindowShouldClose())
     {
@@ -35,14 +52,12 @@ int main()
         }
         BeginDrawing();
             ClearBackground(BLACK);
-            DrawFPS(10, 10);
             { // DRAW HERE
                 axis.draw();
             }
+            if(showfps) DrawFPS(10, 10);
         EndDrawing();
     }
-
-
 
     return 0;
 }
