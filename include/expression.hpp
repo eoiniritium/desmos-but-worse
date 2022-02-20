@@ -2,22 +2,25 @@
 
 #include <vector>
 #include "axis.hpp"
-#include "stdio.h"
 
-class Expression 
-{   protected:
-    std::vector<double> e(std::string expression_string, axis ax, double plotsperpoint)
+class Expression
+{
+    protected:
+    std::vector<double> expression_points(std::string expression_string, axis ax, double plotsperpoint)
     {
-        std::vector<double> res;
-        double y;
-        for(double x = ax.lowest; x < ax.highest; x+=1/plotsperpoint)
-        {   
-            // EACH EXPRESSION GOES HERE. CODE WILL STEP THROUGH AND CALCULATE EACH ANSWER WITH A DIFFERENT x
-            //double pb = cos(radToDegrees(i));
 
-            y = d_sin(x);
+
+
+
+
+        
+        std::vector<double> res;
+        for(double x = ax.lowest; x < ax.highest; x+=1/plotsperpoint)
+        {
+            double y = d_sin(x);
             res.push_back(y);
         }
+
         return res;
     }
 

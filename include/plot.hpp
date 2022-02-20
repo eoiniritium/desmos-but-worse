@@ -31,7 +31,7 @@ class Plot: private Expression
     void draw()
     {
        
-        ypoints = e(this->expression_string, this->points.x, resolution);
+        ypoints = expression_points(this->expression_string, this->points.x, resolution);
         
         // DRAW POINTS
         double posx = this->points.margin, posy;

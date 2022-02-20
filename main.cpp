@@ -10,6 +10,7 @@ int main()
     int sh = 500;    
     int fps;
     int showfps = 0;
+    std::string expressionstring;
 
 
     printf("Target FPS: ");
@@ -25,12 +26,16 @@ int main()
     printf("Screen dimensions: ");
     scanf("%dx%d", &sw, &sh);
 
+    std::cout << "Expression string: ";
+    std:: cin >> expressionstring;
+    std::cout << std::endl << "Expression string: " << expressionstring << std::endl;
+
     InitWindow(sw, sh, "Graphing");
     SetTargetFPS(fps);
 
     axis x, y;
     x.highest = 360;
-    x.lowest = -180;
+    x.lowest = -90;
 
     y.highest = 1;
     y.lowest = -1;
@@ -44,7 +49,7 @@ int main()
     axispoints points = axis.getaxispoints();
 
     Plot plot(points, BLUE, 100);
-    plot.expression("sin(x)");
+    plot.expression(expressionstring);
     plot.draw();
 
     Vector2 pos;
