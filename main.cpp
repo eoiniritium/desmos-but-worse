@@ -40,7 +40,7 @@ int main()
 
     Font_s font("src/roboto/Roboto-Bold.ttf");
 
-    Axis axis(s, x, y, 14, 2, font.getfont(), 10, 10, 5);
+    Axis axis(s, x, y, 14, 2, font.getfont(), 10, 12, 10);
     axispoints points = axis.getaxispoints();
 
     Plot plot(points, BLUE, 100);
