@@ -37,10 +37,10 @@ class Plot: private Expression
         double posx = this->points.margin, posy;
         for(int i = 0; i < ypoints.size(); ++i)
         {
-            posx += (this->points.pointperpixel_x * resolution);
-            posy = this->points.xaxisypos + (ypoints[i] * this->points.pointperpixel_y);
-
+            posy = ( (this->points.xaxisypos - (ypoints[i] * this->points.pointperpixel_y)) > this->points.margin_top ) ? (this->points.xaxisypos - (ypoints[i] * this->points.pointperpixel_y)) : -1; // If too high place point above screen
+            posy = (posy > this->points.sh - this->points.margin) ? -1 : posy; // If too low place point above screen
             DrawPixel(posx, posy, color);
+            posx += (this->points.pointperpixel_x * 1/resolution);
         }
     }
 

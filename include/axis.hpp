@@ -19,6 +19,7 @@ typedef struct axispoints
 {
     double pointperpixel_x, pointperpixel_y, xaxisypos, yaxisxpos, margin, margin_top;
     axis x, y;
+    int sh, sw;
 } axispoints;
 
 
@@ -37,7 +38,7 @@ class Axis
     double yaxisxpos;
 
     public:
-    Axis(screen dimensions, axis x, axis y, float fontsize, float fontspacing, Font font, int margin_top = 50, int number_label_points_x = 10, int number_label_points_y = 8)
+    Axis(screen dimensions, axis x, axis y, float fontsize, float fontspacing, Font font, int margin_top = 50, int number_label_points_x = 10, int number_label_points_y = 10)
     {
         this->dimensions = dimensions;
         this->x = x;
@@ -82,6 +83,8 @@ class Axis
         res.y               = this->y;
         res.margin          = this->margin;
         res.margin_top      = this->margin_top;
+        res.sh              = this->dimensions.sh;
+        res.sw              = this->dimensions.sw;
 
         return res;
     }
@@ -112,7 +115,7 @@ class Axis
         spacing = spacing / number_label_points_x;
         double number_spacing = range(x) / number_label_points_x;
 
-        loc.y = xaxisypos+1; // +1 for spacing
+        loc.y = xaxisypos +1; // +1 for spacing
         loc.x = margin;
         double number_for_label = x.lowest;
         for(int i = 0; i < number_label_points_x; ++i)

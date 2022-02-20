@@ -29,9 +29,9 @@ int main()
     SetTargetFPS(fps);
 
     axis x, y;
-    x.highest = 0.15;
-    x.lowest = 0;
-    
+    x.highest = 360;
+    x.lowest = -180;
+
     y.highest = 1;
     y.lowest = -1;
     screen s;
@@ -43,7 +43,7 @@ int main()
     Axis axis(s, x, y, 14, 2, font.getfont());
     axispoints points = axis.getaxispoints();
 
-    Plot plot(points, GREEN, 0.0001);
+    Plot plot(points, GREEN, 100);
     plot.expression("sin(x)");
     plot.draw();
 
