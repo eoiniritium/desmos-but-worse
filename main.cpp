@@ -2,6 +2,7 @@
 #include "raylib.h"
 #include "axis.hpp"
 #include "font.hpp"
+#include "plot.hpp"
 
 int main()
 {
@@ -28,18 +29,23 @@ int main()
     SetTargetFPS(fps);
 
     axis x, y;
-    x.highest = 100;
-    x.lowest = -100;
-    y.highest = 10;
-    y.lowest = -10;
+    x.highest = 360;
+    x.lowest = -180;
+
+    y.highest = 1;
+    y.lowest = -1;
     screen s;
     s.sh = sh;
     s.sw = sw;
 
     Font_s font("src/roboto/Roboto-Bold.ttf");
 
-
     Axis axis(s, x, y, 14, 2, font.getfont());
+    axispoints points = axis.getaxispoints();
+
+    Plot plot(points, GREEN, 100);
+    plot.expression("sin(x)");
+    plot.draw();
 
     Vector2 pos;
     pos.x = 100;
@@ -54,6 +60,7 @@ int main()
             ClearBackground(BLACK);
             { // DRAW HERE
                 axis.draw();
+                plot.draw();
             }
             if(showfps) DrawFPS(10, 10);
         EndDrawing();
