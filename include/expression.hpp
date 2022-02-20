@@ -40,4 +40,12 @@ class Expression
     {
         return sin(degreesToRad(theta));
     }
+    double d_cos(double theta)
+    {
+        return cos(degreesToRad(theta));
+    }
+    double d_tan(double theta)
+    {
+        return tan(degreesToRad(theta));
+    }
 };
