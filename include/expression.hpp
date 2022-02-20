@@ -15,7 +15,7 @@ class Expression
             // EACH EXPRESSION GOES HERE. CODE WILL STEP THROUGH AND CALCULATE EACH ANSWER WITH A DIFFERENT x
             //double pb = cos(radToDegrees(i));
 
-            y = sin(degreesToRad(x));
+            y = d_sin(x);
             res.push_back(y);
         }
         return res;
@@ -34,5 +34,10 @@ class Expression
     double radToDegrees(double rad)
     {
         return rad * (180 / 3.14159);
+    }
+
+    double d_sin(double theta)
+    {
+        return sin(degreesToRad(theta));
     }
 };

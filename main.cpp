@@ -6,8 +6,8 @@
 
 int main()
 {
-    int sw = 1280;
-    int sh = 720;    
+    int sw = 500;
+    int sh = 500;    
     int fps;
     int showfps = 0;
 
@@ -40,10 +40,10 @@ int main()
 
     Font_s font("src/roboto/Roboto-Bold.ttf");
 
-    Axis axis(s, x, y, 14, 2, font.getfont());
+    Axis axis(s, x, y, 14, 2, font.getfont(), 10, 10, 5);
     axispoints points = axis.getaxispoints();
 
-    Plot plot(points, GREEN, 100);
+    Plot plot(points, BLUE, 100);
     plot.expression("sin(x)");
     plot.draw();
 
