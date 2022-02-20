@@ -15,10 +15,11 @@ typedef struct axis
     double lowest, highest;
 } axis;
 
-/*typedef struct 
+typedef struct axispoints
 {
-    /* data
-};*/
+    double pointperpixel_x, pointperpixel_y, xaxisypos, yaxisxpos, margin, margin_top;
+    axis x, y;
+} axispoints;
 
 
 class Axis
@@ -69,6 +70,22 @@ class Axis
             yaxisxpos = ((-this->x.lowest) * pointperpixel_x) + margin;
         }
     }
+
+    axispoints getaxispoints()
+    {
+        axispoints res;
+        res.pointperpixel_x = this->pointperpixel_x;
+        res.pointperpixel_y = this->pointperpixel_y;
+        res.xaxisypos       = this->xaxisypos;
+        res.yaxisxpos       = this->yaxisxpos;
+        res.x               = this->x;
+        res.y               = this->y;
+        res.margin          = this->margin;
+        res.margin_top      = this->margin_top;
+
+        return res;
+    }
+
 
     void draw()
     {   
