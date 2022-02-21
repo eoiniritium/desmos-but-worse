@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "axis.hpp"
+#include "tinyexpr.h"
 
 class Expression
 {
